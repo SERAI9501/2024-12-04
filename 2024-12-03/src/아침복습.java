@@ -47,13 +47,22 @@ public class 아침복습 {
 //				System.out.println(i+" ");
 //			}
 //		}
-		Scanner scan=new Scanner(System.in);
-		int[] arr=new int[10];
-		for(int i=0;i<arr.length;i++)
-		System.out.println());
-		{
-			arr[i]=scan.nextInt();
-		}
+//		Scanner scan=new Scanner(System.in);
+//		int[] arr=new int[10];
+//		for(int i=0;i<arr.length;i++)
+//		{
+//			System.out.print("숫자 입력:");
+//			arr[i]=scan.nextInt();
+//		} 	
+//		System.out.print("3의 배수의 숫자는");
+//		for(int i:arr)
+//		{
+//			if(i%3==0)
+//			{
+//				System.out.print(i+" ");
+//			}
+//		}
+		
 //
 //		5. 정수를 10개 저장하는 배열을 만들고 1에서 10까지 범위의 정수를 랜덤하게 생성하여 배열에 저장하라.
 //		그리고 배열에 든 숫자들과 평균을 출력하라. 
@@ -82,6 +91,23 @@ public class 아침복습 {
 //			}
 //		System.out.println(max);
 //		System.out.println(min);
+		
+//		int[] num= {94,85,95,88,90};
+//		int max=0;
+//		int min=0;
+//		for(int i=0;i<num.length;i++)
+//		{
+//			if(min>num[i])
+//			{
+//				min=num[i];
+//			}
+//			if(max<num[i])
+//			{
+//				max=num[i];
+//			}
+//		}
+//		System.out.println(min);
+//		System.out.println(max);
 			
 
 
@@ -103,6 +129,19 @@ public class 아침복습 {
 //			sum+=i;
 //		}
 //		System.out.printf("평균:%.2f",sum/10.0);
+		
+//		int[] abc=new int[10];
+//		int sum=0;
+//		for(int i=0;i<abc.length;i++)
+//		{
+//			abc[i]=(int)(Math.random()*10)+1;
+//		}System.out.println(Arrays.toString(abc));
+//		
+//		for(int i:abc)
+//		{
+//			sum+=i;
+//		}
+//		System.out.printf("평균:%.2f",sum/10.0);
 
 		
 //		8. arr 배열 중에서 인덱스가 1인 곳의 값을 출력해보자.
@@ -113,11 +152,15 @@ public class 아침복습 {
 //			arr[i]+=0;
 //		}
 //		System.out.println(arr[0]);
-
 		
+//		int[] arr= {10,20,30,50,3,60,-3};
+//		for(int i=0;i<arr.length;i++)
+//		{
+//		}
+//		System.out.println(arr[0]);
 			
 		
-//		
+
 //		9.  arr 배열 중에서 값이 60인 곳의 인덱스를 출력해보자. 
 //		int[] arr={10,20,30,50,3,60,-3};
 //		int index=0;
@@ -140,6 +183,16 @@ public class 아침복습 {
 //			}
 //		}
 //
+		int[] arr= {10,20,30,50,3,60,-3};
+		for(int i=0;i<arr.length;i++)
+		{
+			if(arr[i]==60)
+			{
+				System.out.println(arr[i]);
+				break;
+			}
+		}
+			
 			}
 		
 	}
