@@ -30,7 +30,6 @@ public class 메소드_4 {
 		Scanner scan=new Scanner(System.in);
 		System.out.print("단 입력(2~9):");
 		int dan=scan.nextInt();
-		
 		String g=gugudan();
 		
 	}

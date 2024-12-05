@@ -17,6 +17,14 @@ public class 메소드_5 {
 		int a=scan.nextInt();
 		return c;
 		
+		System.out.print("2' 정수입력:");
+		int b=scan.nextInt();
+		return c;
+		
+		System.out.print("3' 정수입력:");
+		int c=scan.nextInt();
+		return c;
+		
 	}
 	//요청 처리 1
 	static int total(int a, int b,int c)
@@ -29,7 +37,8 @@ public class 메소드_5 {
 		return total/3.0;
 	}
 	//출력
-	static void print(int total,double avg)
+	static void print(int total,double avg) 
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		// 3개의 정수 받기
@@ -48,7 +57,7 @@ public class 메소드_5 {
 		int total=a+b+c;
 		// 출력
 		System.out.println("평균:"+avg);
-		System.out.println("총점:"+);
+		System.out.println("총점:"+total);
 		
 		int a=userInput(1);
 		int b=userInput(2);
@@ -56,7 +65,7 @@ public class 메소드_5 {
 		
 		int total=total(a,b,c);
 		double avg=div(total);
-		pint(total, avg);
+		print(total, avg);
 	}
 
 }

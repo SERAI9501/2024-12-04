@@ -170,7 +170,7 @@ public class 메소드_1 {
 		}System.out.println();
 	}
 	public static void main(String[] args) {
-		gugudan()
+		gugudan();
 		// TODO Auto-generated method stub
 		return;//컴파일시에 return이 없는 경우에는 자동으로 생성
 		//return => 메소드 종료
