@@ -16,6 +16,8 @@ public class 메소드응용_변경2 {
 			
 			int week=getweek(year,month);
 			print(week,year,month);
+			//조립 순서란?
+			//
 			
 	}
 	static int getweek(int year, int month)
