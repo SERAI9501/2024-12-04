@@ -3,6 +3,26 @@ public class 객체지향프로그램_문제 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		다음의 코드에 정의된 변수들을 종류별로 구분해서 적으시오.
+		classPlayingCard { 
+		int kind; 
+		intnum; 
+		//------------------ 인스턴스 변수 => Heap => 프로그램 종료시까지 유지 => 멤버변수 => 8byte 메모리 크기는 인스턴스 변수만 보고 따진다. => new 사용시마다 메모리가 따로 배정된다
+		staticint width; 
+		staticint height; 
+		//------------------정적변수 => 공유변수 => MethodArea에 들어간다
+			생성자 => 변수 초기화
+		PlayingCard(int k, int n) { 
+		kind = k; 
+		num = n; 
+			//k.n 매개변수 => 지역변수 일종 =>
+		stack : 메모리 자체 관리 {} 종료되면 자동 삭제
+		} 
+		인스턴스변수 :
+		정적변수(공유변수) :
+		지역변수 :
+
+		
 		1) 클래스명과 동일 2)여러개 생성이 가능=오버로딩 3)역할 => 객체 생성시 호출, 변수에 초기화
 //		
 //		다음 중 생성자에 대한 설명으로 옳지 않은 것은? (모두 고르시오) c,e / c,e
