@@ -1,9 +1,9 @@
 //3명의 학생 국어/영어/수학 => 총점 , 평균 , 학점
 // new를 3번 => 메모리 공간이 다르다.
-import java.util.Scanner;
 /*
  *  int[] kor=new int[]
  */
+import java.util.Scanner;
 class Student //데이터형 /필요에 의해서 하나의 데이터로 만듬 => 그말은 배열이 가능하다. => collection으로 대체도 가능하다
 {
 	String name;
@@ -11,7 +11,7 @@ class Student //데이터형 /필요에 의해서 하나의 데이터로 만듬 
 	int total;
 	double avg;
 	char score;
-	String schiil_name; // 범위에 따라 이 값이 스태틱/인스턴스로 나뉜다.
+	String school_name; // 범위에 따라 이 값이 스태틱/인스턴스로 나뉜다.
 }
 
 public class 클래스_5 {
@@ -32,8 +32,10 @@ public class 클래스_5 {
 			System.out.print((i+1)+"번째 수학 입력:");
 			std[i].math=scan.nextInt();
 			
-			std[i].total=std[i].kor+std[i].eng+std[i].math+std[i];
+			std[i].total=std[i].kor+std[i].eng+std[i].math;
+			
 				std[i].avg=std[i].total/3.0;
+				
 				switch(std[i].total/30)
 				{
 				case 10: case 9:
@@ -55,7 +57,13 @@ public class 클래스_5 {
 		}
 		for(int i=0;i<std.length;i++)
 		{
-			System.out.printf("%-5d%-5d%-5d%-7d%");
+			System.out.printf("%-5d%-5d%-5d%-7d%-7.2f%-5c\n",
+			  std[i].kor,
+        	  std[i].eng,
+        	  std[i].math,
+        	  std[i].total,
+        	  std[i].avg,
+        	  std[i].score);
 		}
 	}
 
