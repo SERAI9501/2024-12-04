@@ -79,7 +79,7 @@ implements ItemListener
 //		o="Hello";
 //		o=10.5;
 //		o='A';
-//		// 혼합된 배열 Object[] ob={"",10,'a'...};
+//		// 혼합된 배열 Object[] obj={"",10,'a'...};
 //		// javascript => 배열 => Object
 //		// 모든 클래스를 모아서 사용이 가능
 	}
