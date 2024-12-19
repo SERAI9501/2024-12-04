@@ -35,7 +35,7 @@ package com.sist.exception;
 import java.util.Scanner;
 class MyException extends Exception
 {
-	public MyException(String msd)
+	public MyException(String msg)
 	{
 		super(msg);
 	}

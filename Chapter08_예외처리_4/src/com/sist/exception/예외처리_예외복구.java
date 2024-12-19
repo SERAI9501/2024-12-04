@@ -149,7 +149,7 @@ public class 예외처리_예외복구 {
 
 	public static void main(String[] args) throws Exception{
 		// TODO Auto-generated method stub
-		// 인스턴스는 사용이 불가능 => 사용시에는 반ㄴ드시 객체생성후 
+		// 인스턴스는 사용이 불가능 => 사용시에는 반드시 객체생성후 
 		// static은 바로 사용이 가능 / 스테틱은 바로 메모리에 저장되기에 바로바로 사용이 가능하다
 		예외처리_예외복구 a=new 예외처리_예외복구();
 		// a는 메모리 주소 이것을 '객체' 라고 부른다

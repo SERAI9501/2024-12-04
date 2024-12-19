@@ -37,7 +37,7 @@ public class 라이브러리_Object_4_1 {
 		// TODO Auto-generated method stub
 		Sawon2 s1=new Sawon2(1, "홍길동");
 		Sawon2 s2=new Sawon2(1, "홍길동");
-		//equals는 재정의가 없는 경우 => 주소
+		//equals 는 재정의가 없는 경우 => 주소
 		//equals 재정의시에는 멤버변수 비교 ==> String
 		if(s1.equals(s2))
 		{

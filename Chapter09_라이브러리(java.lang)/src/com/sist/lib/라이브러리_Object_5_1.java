@@ -52,7 +52,7 @@ public class 라이브러리_Object_5_1 {
 		System.out.println(m1.getClass());//데이터형
 		String s="";
 		System.out.println(s.getClass());
-		//ArrayList<Movie> list=new ArrayList<Movie>();
+//		ArrayList<Movie> list=new ArrayList<Movie>();
 //		list.add(new Movie(1, "홍길동전"));
 //		list.add(new Movie(2, "심청전"));
 //		

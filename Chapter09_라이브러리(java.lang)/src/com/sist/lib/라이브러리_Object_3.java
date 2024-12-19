@@ -11,6 +11,7 @@ package com.sist.lib;
 class Member implements Cloneable
 {
 	private int mno;
+	private String name;
 	public Member(int i, String string) {
 		// TODO Auto-generated constructor stub
 	}
@@ -26,11 +27,10 @@ class Member implements Cloneable
 	public void setName(String name) {
 		this.name = name;
 	}
-	private String name;
+}
 	// 지역변수 우선순위 => 멤버변수와 구분하기 위해서 this
 	// 모든 클래스는 this를 가지고 있다 => 클래스 자신의 객체표현
 	// static => this를 사용할 수 없다 = 자신의 것이 아닌 공유하기 때문이다.
-}
 	// 오버라이딩 => clone() => 재정의
 
 // 메모리를 통째로 복사해서 새로운 메모리에 저장 = 즉 메모리 주소는 다르다

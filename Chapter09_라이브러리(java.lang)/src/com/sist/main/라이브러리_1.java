@@ -76,7 +76,7 @@ package com.sist.main;
  *             => 가장 많이 사용 라이브러리 (String,System)
  *          2) 대표클래스
  *             = Object : 모든 클래스의 상위 클래스
- *                        ------- Object 상속을 ㅂ다는다
+ *                        ------- Object 상속을 받는다
  *              public class A extends Object
  *                             -------------
  *                              생략이 가능
@@ -86,7 +86,7 @@ package com.sist.main;
  *                  A a=new A();
  *                  => System.out.println(a.toString())
  *                  => System.out.prontln(a)
- *             => 자주 사용이 된다 / 객체의 값이 정상적으로 처리 확ㅇㄴ
+ *             => 자주 사용이 된다 / 객체의 값이 정상적으로 처리 확인
  *             => 객체를 무자열화 지킨다
  *            = clone 객체
  *             finalize() : 소멸자 => 메모리 해제시에 자동 호출한다
@@ -104,7 +104,6 @@ class Student
 	public Student(String name,String phone,String address)
 	{
 		/*
-		 *  1.지역변수 / 매개변수
 		 *   1.지역변수 , 매개변수 찾기
 		 *   2.멤버변수
 		 *   **지역변수 우선 순위
