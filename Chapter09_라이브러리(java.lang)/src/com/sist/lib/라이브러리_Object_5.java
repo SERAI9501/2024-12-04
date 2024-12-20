@@ -54,7 +54,7 @@ public class 라이브러리_Object_5 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Member2 m1=new Member2(1,"박문수");
-		Member2 m2=new Member2(1, "박문수");
+		Member2 m2=new Member2(1,"박문수");
 		
 		System.out.println("m1:"+m1);
 		System.out.println("m2:"+m2);
