@@ -55,45 +55,68 @@ public class EmpDAO {
 		{
 			if(ps!=null) ps.close();
 			if(conn!=null) conn.close();
+			//exit
 		}catch (Exception ex) {
 			// TODO: handle exception
 		}
 	}
 	//검색
-	public TreeSet<String> empGetNames()
-	{
-		TreeSet<String> set=new TreeSet<String>();
-		return set;
+	   public TreeSet<String> empGetNames()
+	   {
+		   TreeSet<String> set=new TreeSet<String>();
+		   try
+		   {
+			   getConnection();
+			   String sql="SELECT ename FROM emp";
+			   ps=conn.prepareStatement(sql);
+			   ResultSet rs=ps.executeQuery();
+			   while(rs.next())
+			   {
+				   set.add(rs.getString("ename"));
+				   // 자바 => 0
+				   // 오라쿨 => 1
+			   }
+			   rs.close();
+		   }catch(Exception ex)
+		   {
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   disConnection();
+		   }
+		   return set;
+	   }
+	   // 직위 => 중복 => 중복제거 
+	   public HashSet<String> empGetJobs()
+	   {
+		   HashSet<String> set=
+				     new HashSet<String>();
+		   try
+		   {
+			   //1. 연결 
+			   getConnection();
+			   //2. 오라클 => SQL문장 
+			   String sql="SELECT job FROM emp";
+			   //3. 오라클 전송 
+			   ps=conn.prepareStatement(sql);
+			   //4. 실행후 데이터 읽기
+			   ResultSet rs=ps.executeQuery();
+			   while(rs.next())
+			   {
+				   set.add(rs.getString(1));
+			   }
+			   rs.close();
+		   }catch(Exception ex)
+		   {
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   disConnection();
+		   }
+		   return set;
+	   }
+	   // 사원의 모든 정보 => 목록 ArrayList로 가져와라
+	   
 	}
-	//직위 => 중복 => 중복제거
-	public HashSet<String> empGetJobs()
-	{
-		HashSet<String> set=new HashSet<String>();
-		try
-		{
-			//1. 연결
-			getConnection();
-			//2. 오라클에 => SQL문장을 보냄
-			String sql="SELECT ename FROM emp";
-			//3. 오라클 전송
-			ps=conn.prepareStatement(sql);
-			//4. 실행후 데이터 읽어와라 명령문
-			ResultSet rs=ps.executeQuery();
-			while(rs.next())
-			{
-				//set으로 중복된건 제거하라
-				set.add(rs.getString(1));
-				
-			}
-			rs.close();
-		}catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		finally
-		{
-			disConnection();
-		}
-		return set;
-	}
-	//사원의 모든 정보 => 목록을 가지고 싶다 (ArrayList)를 사용한다.
-}
