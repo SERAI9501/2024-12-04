@@ -18,23 +18,26 @@ import java.util.*;
 
 public class 컬렉션_8_set_3 {
 
-	TreeSet<Integer> set=new TreeSet<Integer>();
-    Random r=new Random();
-    for(int i=0;i<10;i++)
-    {
-    	set.add(r.nextInt(101));//0~100
-    }
-    
-    // 출력 
-    for(int score:set)
-    {
-    	System.out.print(score+" ");
-    }
-    
-    System.out.println();
-    System.out.println("===== 60점 이하 ====");
-    System.out.println(set.headSet(60));
-    System.out.println("===== 60점 이상 ====");
-    System.out.println(set.tailSet(60));
-}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+        TreeSet<Integer> set=new TreeSet<Integer>();
+        Random r=new Random();
+        for(int i=0;i<10;i++)
+        {
+        	set.add(r.nextInt(101));//0~100
+        }
+        
+        // 출력 
+        for(int score:set)
+        {
+        	System.out.print(score+" ");
+        }
+        
+        System.out.println();
+        System.out.println("===== 60점 이하 ====");
+        System.out.println(set.headSet(60));
+        System.out.println("===== 60점 이상 ====");
+        System.out.println(set.tailSet(60));
+	}
+
 }
