@@ -25,12 +25,13 @@ implements ActionListener,MouseListener
     public BoardMainForm()
     {
     	setLayout(card);
+    	
     	// 추가 
     	add("LIST",bList);
     	add("DETAIL",bDetail);
     	add("INSERT",bInsert);
     	add("UPDATE",bUpdate);
-    	
+    	add("DELETE",bDelete);
     	
     	setTitle("윈도우 게시판 ver 1.0");
     	listPrint();
@@ -46,19 +47,19 @@ implements ActionListener,MouseListener
     	bList.prevBtn.addActionListener(this);
     	// 다음
     	bList.nextBtn.addActionListener(this);
-    	//table
+    	// table
     	bList.table.addMouseListener(this);
     	
-    	//목록
+    	// 목록 
     	bDetail.b3.addActionListener(this);
-    	//수정
+    	// 수정 
     	bDetail.b1.addActionListener(this);
-    	//삭제
+    	// 삭제
     	bDetail.b2.addActionListener(this);
     	
     	// 실제 삭제
-    	bDelete.b1.addActionListener(this);
-    	bDelete.b2.addActionListener(this);
+    	bDelete.b1.addActionListener(this);// 삭제
+    	bDelete.b2.addActionListener(this);// 취소
     }
     public void listPrint()
     {
@@ -144,18 +145,7 @@ implements ActionListener,MouseListener
 				bInsert.subTf.requestFocus();
 				return;
 			}
-			public BoardVO boradUpData(int no)
-			{
-				BoardVO vo=new BoardVO();
-				for(dvo)
-				{
-					if(dvo.getNo==no)
-					{
-						vo=dvo;
-						break;
-					}
-				}
-			}
+			
 			String content=bInsert.ta.getText();
 			// 입력된 값 읽기 
 			if(content.length()<1)
@@ -164,7 +154,8 @@ implements ActionListener,MouseListener
 				return;
 			}
 			
-			String pwd=String.valueOf(bInsert.pwdPf.getPassword());
+			String pwd=String.valueOf(
+					bInsert.pwdPf.getPassword());
 			// 입력된 값 읽기 
 			if(pwd.length()<1)
 			{
@@ -183,46 +174,105 @@ implements ActionListener,MouseListener
 			
 			bm.boardInsert(vo); // 추가
 			
-			// 목록으로 이동
-			card.show(getContentPane(), "List");
+			// 목록으로 이동 
+			card.show(getContentPane(), "LIST");
+			listPrint();
+			
+		}
+		else if(e.getSource()==bList.prevBtn)// 이전
+		{
+			if(curpage>1)
+			{
+				curpage--;
+				listPrint();
+			}
+		}
+		else if(e.getSource()==bList.nextBtn)// 다음
+		{
+			if(curpage<totalpage)
+			{
+				curpage++;
+				listPrint();
+			}
+		}
+		// => 웹 => 반드시 현재페이지 전송 
+		else if(e.getSource()==bDetail.b3)// 상세보기 => 목록
+		{
+			card.show(getContentPane(), "LIST");
 			listPrint();
 		}
-			else if(e.getSource()==bList.prevBtn)
+		else if(e.getSource()==bDetail.b2)
+		{
+			card.show(getContentPane(), "DELETE");
+			// 화면 변경 
+		}
+		else if(e.getSource()==bDetail.b1)
+		{
+			// 수정 요청 
+			String no=bDetail.no.getText();
+			BoardVO vo=
+					bm.boardUpdateData(Integer.parseInt(no));
+			card.show(getContentPane(), "UPDATE");
+			bUpdate.nameTf.setText(vo.getName());
+			bUpdate.subTf.setText(vo.getSubject());
+			bUpdate.ta.setText(vo.getContent());
+		}
+		
+		else if(e.getSource()==bDelete.b2)
+		{
+			card.show(getContentPane(), "DETAIL");
+		}
+		else if(e.getSource()==bDelete.b1)
+		{
+			String pwd=String.valueOf(bDelete.pf.getPassword());
+			if(pwd.length()<1)
 			{
-				if(curpage>1)
-				{
-					curpage--;
-					listPrint();
-				}
+				bDelete.pf.requestFocus();
+				return;
 			}
-			else if(e.getSource()==bList.nextBtn)
+			String no=bDetail.no.getText();
+			boolean bCheck=
+				bm.boardDelete(Integer.parseInt(no), pwd);
+			if(bCheck==false)
 			{
-				if(curpage<totalpage)
-				{
-					curpage++;
-					listPrint();
-				}
+				JOptionPane.showMessageDialog(this, 
+						"비밀번호가 틀립니다");
+				bDelete.pf.setText("");
+				bDelete.pf.requestFocus();
+				
 			}
-		// => 웹 => 반드시 현재페이지 전송
-			else if(e.getSource()==bDetail.b3)
+			else
 			{
 				card.show(getContentPane(), "LIST");
 				listPrint();
 			}
-		
+		}
+		// 수정 / 삭제 => 본인여부 확인 => 비밀번호 
+		// boolean => 비밀번호 체크 
+		/*
+		 *    1. 목록 => 추가 => 목록
+		 *             삭제 => 목록
+		 *    2. 상세보기 
+		 *          수정 => 상세보기
+		 *    3. 취소 => 이전화면 이동 
+		 *          history.back() 
+		 */
 	}
+	// onMouseDown
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource()==bList.table)
 		{
-			if(e.getClickCount()==2)// 더블클릭
+			if(e.getClickCount()==2)// 더블 클릭
 			{
 				int row=bList.table.getSelectedRow();
 				String no=bList.model.getValueAt(row, 0).toString();
 				//System.out.println(no);
-			    BoardVO vo=bm.boardDBoardVO(Integer.parseInt(no));
+				BoardVO vo=bm.boardDetailData(Integer.parseInt(no));
+				
 				card.show(getContentPane(), "DETAIL");
+				
 				// 출력 => bDetail
 				bDetail.no.setText(String.valueOf(vo.getNo()));
 				bDetail.name.setText(vo.getName());
@@ -232,32 +282,36 @@ implements ActionListener,MouseListener
 				bDetail.day.setText(new SimpleDateFormat("yyyy-MM-dd").format(vo.getRegdate()));
 				// 1. 웹 / 윈도우 => 거의 대부분이 String이기 때문에
 				// 정수 / 실수 변환 => String.valueOf()
-				//-------------Integer.parseInt() , Double.parseDouble()
-				// 날짜 => SimpleDateFormat
-				// 정수 => DecimalFormat => 1,000
+				// --------- Integer.parseInt() Double.parseDouble()
+				// 날짜 =>  SimpleDateFormat 
+				// 정수 =>  DecimalFormat => 1,000
+				
 			}
 		}
 	}
+	
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
+	// onMouseUp
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
+	// onMouseOver
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
+	// onMouseOut
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
-	}	
-		
+	}
 
 }

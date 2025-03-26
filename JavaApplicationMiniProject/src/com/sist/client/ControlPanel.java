@@ -1,45 +1,62 @@
 package com.sist.client;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 
 import javax.swing.*;
+// 화면 변경 
 public class ControlPanel extends JPanel{
-	Image back;
-	JLabel la1,la2;
-	JTextField tf;
-	JPasswordField pf;
-	JButton b1,b2;
-	public ControlPanel()
-	{
-		back=Toolkit.getDefaultToolkit().getImage("c:\\javaDev\\wrtFileImageView.jpg");
-		la1=new JLabel("ID");
-		la2=new JLabel("Password");
-		tf=new JTextField();
-		pf=new JPasswordField();
-		b1=new JButton("로그인");
-		b2=new JButton("취소");
-		// 배치 => 실행과 동시에 실행 명령 => 초기화 => 생성자
-		setLayout(null);
-		la1.setBounds(10, 15, 80, 30);
-		tf.setBounds(95, 15, 200, 30);
-		add(la1);add(tf);
-		
-		la2.setBounds(10, 50, 80, 30);
-		pf.setBounds(95, 50, 200, 30);
-		add(la2);add(pf);
-		
-		JPanel p=new JPanel();
-		p.setOpaque(false);
-		p.add(b1);
-		p.add(b2);
-		p.setBounds(10, 90, 285, 35);
-		add(p);
-	}
-	
-	public void paintComponent(Graphics g)
-	{
-		g.drawImage(back, 0, 0, getWidth(), getHeight(), this);
-	}
+    HomePenal hp;
+    ChatPenal cp;
+    FoodGenrePenal fgp;
+    FoodFindPenal ffp;
+    FoodDetailPenal fdp;
+    BoardList bList;
+    BoardInsert bInsert;
+    BoardDetail bDetail;
+    BoardUpdate bUpdate;
+    BoardReply bReply;
+    BoardDelete bDelete;
+    CardLayout card=new CardLayout();
+    public ControlPanel()
+    {
+    	setLayout(card);
+    	hp=new HomePenal(this);
+    	add("HOME",hp);
+    	cp=new ChatPenal(this);
+    	add("CHAT",cp);
+    	fgp=new FoodGenrePenal(this);
+    	add("FOOD",fgp);
+    	ffp=new FoodFindPenal(this);
+    	add("FIND",ffp);
+    	fdp=new FoodDetailPenal(this);
+    	add("DETAIL",fdp);
+    	// 게시판 
+    	bList=new BoardList(this);
+    	add("BLIST",bList);
+    	bInsert=new BoardInsert(this);
+    	add("BINSERT",bInsert);
+    	bDetail=new BoardDetail(this);
+    	add("BDETAIL",bDetail);
+    	bUpdate=new BoardUpdate(this);
+    	add("BUPDATE",bUpdate);
+    	bReply=new BoardReply(this);
+    	add("BREPLY",bReply);
+    	bDelete=new BoardDelete(this); // => jsp(메소드) => URL주소
+    	// delete.jsp?no=10&pwd=1234 => JSP에서는 메소드를 만들 수 없다 
+    	add("BDELETE",bDelete);
+    	
+    	/*
+    	 *    사용자 요청 ==> ControlPanel => 화면 이동 
+    	 *                             필요한 데이터 전송 
+    	 *                             
+    	 *    사용자 요청 ==> Controller => Model 
+    	 *                                 |=> 데이터전송
+    	 *                                화면이동(View):JSP
+    	 *    => MVC (Spring형식) 
+    	 */
+    }
+    
 }
